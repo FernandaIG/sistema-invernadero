@@ -145,16 +145,16 @@ export default {
 
                     return console.log('Ocurrio un error al enviar el correo electronico');
                 }
-                else{
-                   
-                 res.status(200).send({
-                  message:'Correo enviado'
-                   });
-                   return console.log('Correo enviado!!!');
+                else {
+
+                    res.status(200).send({
+                        message: 'Correo enviado'
+                    });
+                    return console.log('Correo enviado!!!');
                 }
-                
+
             });
-           
+
 
         } catch (error) {
             res.status(500).send({

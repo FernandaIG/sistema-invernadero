@@ -16,7 +16,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import Aviso from '../dialogs/snackbar';
 
 
 
@@ -58,10 +58,20 @@ class SignIn extends Component {
         window.addEventListener('storage', this.onStorageChange);
     }
 
+    state = {
+        aviso: false
+    };
+
+
     render() {
         const { classes } = this.props;
         return (
             <Container component="main" maxWidth="xs">
+                 <Aviso
+                        mensaje='Hubo un error al iniciar sesión, ingresa los datos nuevamente'
+                        handleClose={this.handleClose}
+                        aviso={this.state.aviso}
+                    ></Aviso>
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
@@ -132,6 +142,10 @@ class SignIn extends Component {
         );
     }
 
+    handleClose = () => {
+        this.setState({ aviso: false });
+    }
+
     handleChange(ev) {
         this.setState({
             [ev.target.name]: ev.target.value
@@ -142,8 +156,11 @@ class SignIn extends Component {
         ev.preventDefault();
         console.log(this.state);
         this.Auth.login(this.state.email, this.state.password).then(resp => {
+            if (resp.message === 'Contraseña Incorrecta') {
+                this.setState({ aviso: true });
+            }
             this.props.onAuthChange();
-            this.props.history.replace('/');
+            // this.props.history.replace('/');
         }).catch(err => {
             alert(err);
         })

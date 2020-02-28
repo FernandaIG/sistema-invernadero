@@ -15,12 +15,6 @@ export default class ReadDialog extends Component {
         form: {}
     };
 
-    // valueChanges = (property, value) => {
-    //     let form = this.state.form;
-    //     form[property] = value;
-    //     this.setState({ form });
-    // }
-
     handleClickOpen = () => {
         this.setState({ open: true });
     };
@@ -55,8 +49,10 @@ export default class ReadDialog extends Component {
                                                         } else {
                                                             return <tr align="center">
                                                                 {Object.keys(item).map(property => {
-                                                                    if (property != "_id") {
+                                                                    if (property != "_id" && property != "articulo") {
                                                                         return <th>{property.toUpperCase()}</th>
+                                                                    }else if(property == "articulo"){
+                                                                        return <th>ARTÍCULO</th>
                                                                     } else {
                                                                         return;
                                                                     }

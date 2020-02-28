@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 
 import Requests from '../../services/Requests';
 import AuthService from '../../services/AuthService';
+import Aviso from '../dialogs/snackbar';
 
 
 const useStyles = theme => ({
@@ -50,7 +51,8 @@ class MiCuenta extends Component {
     }
 
     state = {
-        data: {}
+        data: {},
+        aviso: false
     };
 
     render() {
@@ -59,6 +61,11 @@ class MiCuenta extends Component {
         return (
             <Container component="main" maxWidth="xs">
                 <div className={classes.paper}>
+                    <Aviso
+                        mensaje='Perfil editado exitosamente'
+                        handleClose={this.handleClose}
+                        aviso={this.state.aviso}
+                    ></Aviso>
                     <Avatar className={classes.avatar}>
                         <AccountCircleIcon />
                     </Avatar>
@@ -181,6 +188,10 @@ class MiCuenta extends Component {
 
     }
 
+    handleClose = () => {
+        this.setState({ aviso: false });
+    }
+
     componentDidMount() {
         console.log("Component loaded");
         this.loadData();
@@ -191,7 +202,7 @@ class MiCuenta extends Component {
         let data = this.state.data;
         data[property] = value;
         this.setState({ data });
-      }
+    }
 
     handleSubmit = (ev) => {
         ev.preventDefault();
@@ -204,6 +215,9 @@ class MiCuenta extends Component {
 
         let path = '/usuario/updateCliente';
         this.Requests.update(path, data).then(res => {
+            if (res.message === 'Usuario editado') {
+                this.setState({ aviso: true });
+            }
             this.loadData();
 
         }).catch(err => {

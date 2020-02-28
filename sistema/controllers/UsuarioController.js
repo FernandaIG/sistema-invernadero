@@ -58,7 +58,6 @@ async function correoContra(reg) {
 }
 
 
-
 export default {
 
     //Metodos de cada ruta
@@ -127,7 +126,10 @@ export default {
             }
 
             const reg = await models.Usuario.findByIdAndUpdate({ _id: req.body._id }, { rol: req.body.rol, nombre: req.body.nombre, usuario: req.body.usuario, email: req.body.email, telefono: req.body.telefono, direccion: req.body.direccion, password: req.body.password });
-            res.status(200).json(reg);
+            // res.status(200).json(reg);
+            res.status(200).send({
+                message: 'Usuario editado'
+            });
 
         } catch (e) {
             res.status(500).send({

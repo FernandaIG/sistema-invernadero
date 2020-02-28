@@ -42,7 +42,7 @@ class Presupuesto extends Component {
         activeTab: 0,
         data: [],
         listQuery: '',
-        aviso:false
+        aviso: false
     };
 
     handleChange = (event, activeTab) => {
@@ -56,10 +56,11 @@ class Presupuesto extends Component {
         return (
             <div>
                 <div>
-               <Aviso mensaje='Correo Enviado Correctamente'
-                handleClose={this.handleClose}
-                aviso={this.state.aviso}
-               ></Aviso>
+                    <Aviso
+                        mensaje='Correo Enviado Correctamente'
+                        handleClose={this.handleClose}
+                        aviso={this.state.aviso}
+                    ></Aviso>
                     <form onSubmit={(ev) => ev.preventDefault()}>
                         <TextField
                             placeholder="Buscar..."
@@ -87,10 +88,10 @@ class Presupuesto extends Component {
                             title='Nuevo presupuesto'
                             fields={
                                 {
-                                    persona: { type: "Select", options: this.state.data[1] ? this.state.data[1].map(el => ({ id: el._id, value: el.nombre })) : [], label:'Persona' },
-                                    descripcion: { type: 'TextField', label:'Descipción' },
-                                    impuesto: { type: 'TextField', label:'Impuesto' },
-                                    detalles: { type: 'ShopList', options: this.state.data[2] ? this.state.data[2].map(el => ({ id: el._id, value: el.nombre, precio: el.precio_venta,cantidadTotal: el.stock })) : [], discount: true, label:'Detalles' }
+                                    persona: { type: "Select", options: this.state.data[1] ? this.state.data[1].map(el => ({ id: el._id, value: el.nombre })) : [], label: 'Persona' },
+                                    descripcion: { type: 'TextField', label: 'Descipción' },
+                                    impuesto: { type: 'TextField', label: 'Impuesto' },
+                                    detalles: { type: 'ShopList', options: this.state.data[2] ? this.state.data[2].map(el => ({ id: el._id, value: el.nombre, precio: el.precio_venta, cantidadTotal: el.stock })) : [], discount: true, label: 'Detalles' }
                                 }
                             }
                             key="tab1" />
@@ -133,8 +134,9 @@ class Presupuesto extends Component {
             })
         });
     }
-    handleClose=()=>{
-        this.setState({aviso:false});
+    
+    handleClose = () => {
+        this.setState({ aviso: false });
     }
 
     handleOnEdit(data) {
@@ -149,7 +151,7 @@ class Presupuesto extends Component {
                 return response.message;
 
             }
-            else{
+            else {
                 this.loadData();
             }
         });
@@ -162,9 +164,9 @@ class Presupuesto extends Component {
         //console.log(data);
         const path = '/presupuesto/send';
         this.Requests.send(path, data).then(response => {
-                console.log(response);
-            if(response.message==='Correo enviado'){
-               this.setState({aviso:true});
+            console.log(response);
+            if (response.message === 'Correo enviado') {
+                this.setState({ aviso: true });
             }
             // console.log('Se envio el correo');
         });
@@ -213,14 +215,14 @@ class Presupuesto extends Component {
         }
         return this.Requests.add(path, data).then(response => {
 
-            if(response.message==='Ocurrio un error'){
+            if (response.message === 'Ocurrio un error') {
                 alert('Hubo un problema al intentar registrar verifica tus datos');
                 return response.message;
-            }  
-              else{
-                      this.loadData();
-  
-              }
+            }
+            else {
+                this.loadData();
+
+            }
         }).catch(error => {
             console.log('Hubo un problema con la petición Fetch:' + error.message);
         });
