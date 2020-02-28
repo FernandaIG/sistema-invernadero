@@ -1,0 +1,94 @@
+
+header {
+    width: 100%;
+    height: 50px;
+    background: #333;
+    color: #fff;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;   
+    
+}
+
+
+.separador{
+    padding: 10px;
+}
+
+.separadorTab{
+    padding-top: 50px;
+}
+.pago{
+    float: right;
+}
+
+.contenedor{
+    width: 98%;
+    margin: auto;
+}
+
+h1{
+    float: left;
+}
+
+header .contenedor{
+    display: table;
+}
+
+section{
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+#bienvenidos{
+    text-align: center;
+}
+
+footer .contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 25px;
+    
+}
+
+.copy{
+    font-style: 20px;
+}
+
+/* la className con nombre sociales tendra un ancho del 100% y estara alineado al centro
+con un tamaño de letra de 28 pixeles*/
+.sociales{
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+}
+/* los elementros a de la className sociales tendran un color negro y sin ninguna decoracion de texto*/
+.sociales a{
+    color: #333;
+    text-decoration: none;
+}
+
+/*Apartir de 1024 px cambia el ancho del contenedor*/
+
+@media(min-width:1024px){
+    .contenedor{
+        width: 1000px;
+    }
+    
+    
+}
+
+/*Apartir de 760 px cambia el ancho de la parte de las redes sociales y del contenedor del footer*/
+
+@media(min-width:760px){
+    .sociales{
+        width: auto;
+    }
+    footer .contenedor{
+        justify-content: space-between;
+    }
+    
+}

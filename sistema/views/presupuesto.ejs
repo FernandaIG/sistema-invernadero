@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Presupuesto Secreto de la Montaña</title>
+    <style>
+        .header {
+            padding: 25px;
+            text-align: center;
+            color: black;
+            font-size: 13px;
+        }
+        .header p {
+            padding: 10px;
+            text-align: right;
+            color: black;
+            font-size: 13px;
+        }
+        .total p {
+            text-align: right;
+            padding: 5px;
+            padding-right: 35px;
+            font-size: 13px;
+        }
+        table.GeneratedTable {
+            width: 100%;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: #499C2F;
+            border-style: double;
+            color: #000000;
+            font-size: 13px;
+            text-align: center;
+        }
+        table.GeneratedTable td,
+        table.GeneratedTable th {
+            border-width: 2px;
+            border-color: #499C2F;
+            border-style: double;
+            padding: 3px;
+            font-size: 13px;
+        }
+        table.GeneratedTable thead {
+            background-color: #499C2F;
+            font-size: 13px;
+        }
+        footer {
+            display: block;
+            padding-top: 240px;
+            font-size: 12px;
+        }
+        footer pre {
+            font-size: 9px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="../logo.g" />
+        <p>Fecha: <%= today.getDate() %>/<%= today.getMonth() + 1 %>/<%= today.getFullYear() %></p>
+        <p>Cliente: <%=nombre%></p>
+        <h3>Presupuesto Invernadero "El Secreto de la Montaña"</h1>
+    </div>
+    <div>
+        <table class="GeneratedTable">
+            <thead>
+                <tr>
+                    <th>Artículo</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (detalles.length > 0) { %>
+                <% detalles.forEach(detalle => {%>
+                <tr>
+                    <td><%= detalle.articulo %></td>
+                    <td>$<%= detalle.precio %></td>
+                    <td><%= detalle.cantidad %></td>
+                    <td>$<%= parseFloat(detalle.precio) * parseFloat(detalle.cantidad) %></td>
+                </tr>
+                <%	});%>
+                <% }%>
+            </tbody>
+        </table>
+    </div>
+    <div class="total">
+        <p>Total: $<%= reg.total %> </p>
+    </div>
+    <div>
+        <footer>
+            <p>Presupuesto hecho por: <%= reg2.nombre%></p>
+            <pre>
+<strong>Notas:</strong>
+Las plantas se envían a raíz desnuda.  
+
+Las paqueterías con las que trabajamos son:
+-Correos de México $55 (entrega de 7 a 15 días)
+-Estafeta $227 (Entrega de 2 a 5 días. hasta 5 kilos)
+-DHL $199 (maximo 1kg. entrega día siguiente)
+
+GARANTIAS                                                                                         
+
+Si el cliente selecciona Correos de México como paquetería
+de envío,El Secreto de la Montaña no se hará responsable 
+por perdida o demora del envío. 
+
+DATOS BANCARIOS BANORTE
+LUIS ALBERTO DIAZ DIAZ
+CLABE: 072180002046623122
+CUENTA: 0204662312
+TARJETA: 4915 6683 3820 6709</pre>
+        </footer>
+    </div>
+</body>
+
+</html>
