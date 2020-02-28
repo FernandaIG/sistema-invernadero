@@ -158,9 +158,11 @@ class SignIn extends Component {
         this.Auth.login(this.state.email, this.state.password).then(resp => {
             if (resp.message === 'Contraseña Incorrecta') {
                 this.setState({ aviso: true });
+            }else{
+                this.props.onAuthChange();
+                this.props.history.replace('/');
             }
-            this.props.onAuthChange();
-            // this.props.history.replace('/');
+           
         }).catch(err => {
             alert(err);
         })
