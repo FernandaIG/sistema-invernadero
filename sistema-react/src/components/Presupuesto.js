@@ -106,7 +106,7 @@ class Presupuesto extends Component {
                             confirmTitle="Eliminar presupuesto"
                             confirmMessage="¿Estas seguro de anular este presupuesto?"
                             emailTitle="Enviar presupuesto"
-                            emailMessage="¿Desea enviar presupuesto por correo electronico?"
+                            emailMessage="¿Desea enviar presupuesto por correo electrónico?"
                             pdfTitle="Generar PDF"
                             pdfMessage="¿Desea generar el presupuesto en formato PDF?"
                             propertiesToEdit={{}}

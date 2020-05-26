@@ -8,9 +8,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Typography from '@material-ui/core/Typography';
@@ -48,7 +45,7 @@ const useStyles = theme => ({
 class SignIn extends Component {
     constructor(props) {
         super(props);
-        this.state = { email: '', password: '' };
+        this.state = { email: '', password: '', aviso: false};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.Auth = new AuthService();
@@ -58,9 +55,9 @@ class SignIn extends Component {
         window.addEventListener('storage', this.onStorageChange);
     }
 
-    state = {
-        aviso: false
-    };
+    // state = {
+    //     aviso: false
+    // };
 
 
     render() {
